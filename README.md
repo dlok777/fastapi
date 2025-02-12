@@ -22,5 +22,5 @@ pip install fastapi uvicorn
 ## 🏃‍♂️ 기본 실행
 uvicorn app.main:app --reload
 
-# 🏃‍♂️ 호스트와 포트 지정하여 실행
+## 🏃‍♂️ 호스트와 포트 지정하여 실행
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
