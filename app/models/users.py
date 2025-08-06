@@ -30,4 +30,24 @@ class UserModel(BaseModel):
         finally:
             self.connection.close()
 
+    def create_user(self, user_data):
+        try:
+            with self.connection.cursor() as cursor:
+                sql = f"INSERT INTO {settings.DB_PREFIX}users (name, email, age) VALUES (%s, %s, %s)"
+                cursor.execute(sql, (user_data.name, user_data.email, user_data.age))
+                self.connection.commit()
+                
+                # 생성된 사용자의 ID 가져오기
+                user_id = cursor.lastrowid
+                
+                # 생성된 사용자 정보 반환
+                return {
+                    "id": user_id,
+                    "name": user_data.name,
+                    "email": user_data.email,
+                    "age": user_data.age
+                }
+        finally:
+            self.connection.close()
+
     # 필요한 다른 쿼리 메서드들 추가 가능 

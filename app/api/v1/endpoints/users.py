@@ -1,8 +1,15 @@
 from typing import List
 from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 from app.models.users import UserModel
 
 router = APIRouter()
+
+# Pydantic 모델 정의
+class User(BaseModel):
+    name: str
+    email: str
+    age: int = None
 
 
 """
@@ -39,7 +46,7 @@ def read_user(user_id: int):
 @router.post("/users/")
 def create_user(user: User):
     user_model = UserModel()
-    user_model.create_user(user)
-    return user
+    result = user_model.create_user(user)
+    return result
 
 
