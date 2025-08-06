@@ -9,13 +9,13 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8  # 8 days
     BACKEND_CORS_ORIGINS: List[str] = ["http://localhost", "http://localhost:4200", "http://localhost:3000"]
     
-    # Database settings
-    DB_HOST: str
-    DB_PORT: str
-    DB_USER: str
-    DB_PASSWORD: str
-    DB_DATABASE: str
-    DB_PREFIX: str
+    # Database settings with defaults
+    DB_HOST: str = "localhost"
+    DB_PORT: str = "3306"
+    DB_USER: str = "root"
+    DB_PASSWORD: str = ""
+    DB_DATABASE: str = "fastapi_db"
+    DB_PREFIX: str = ""
     
     class Config:
         case_sensitive = True
